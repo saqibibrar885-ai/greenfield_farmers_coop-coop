@@ -1,0 +1,30 @@
+[
+  {
+    "id": "md1",
+    "date": "2026-11-07",
+    "location": "Main Market Ground",
+    "totalStalls": 20,
+    "availableStalls": 12
+  },
+  {
+    "id": "md2",
+    "date": "2026-11-14",
+    "location": "Main Market Ground",
+    "totalStalls": 20,
+    "availableStalls": 8
+  },
+  {
+    "id": "md3",
+    "date": "2026-11-21",
+    "location": "Community Hall Lawn",
+    "totalStalls": 15,
+    "availableStalls": 15
+  },
+  {
+    "id": "md4",
+    "date": "2026-11-28",
+    "location": "Main Market Ground",
+    "totalStalls": 20,
+    "availableStalls": 5
+  }
+]

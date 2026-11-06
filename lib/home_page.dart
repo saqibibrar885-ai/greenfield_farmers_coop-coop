@@ -1,15 +1,9 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:greenfield_farmers_coop/models/market_day.dart';
+import 'package:greenfield_farmers_coop/services/market_day_service.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  Future<List<dynamic>> loadDays() async {
-    final text =
-    await rootBundle.loadString('assets/market_days.json');
-    return jsonDecode(text);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +23,21 @@ class HomePage extends StatelessWidget {
             const Text('Upcoming Market Days'),
             const Divider(height: 32),
             Expanded(
-              child: FutureBuilder<List<dynamic>>(
-                future: loadDays(),
+              child: FutureBuilder<List<MarketDay>>(
+                future: MarketDayService().fetchDays(),
                 builder: (context, snap) {
                   if (snap.hasError) {
                     return Center(child: Text('Error: ${snap.error}'));
                   }
                   if (!snap.hasData) {
-                    return const Center(
-                        child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                   final days = snap.data!;
                   return ListView.builder(
                     itemCount: days.length,
                     itemBuilder: (_, i) => ListTile(
                       leading: const Icon(Icons.storefront),
-                      title:
-                      Text('${days[i]['date']} - ${days[i]['time']}'),
+                      title: Text('${days[i].date} - ${days[i].time}'),
                     ),
                   );
                 },
